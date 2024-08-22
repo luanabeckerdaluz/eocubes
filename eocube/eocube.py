@@ -187,9 +187,12 @@ class DataCube:
 
 
     def _initialize_stac_client(self):
-        session = requests.Session()
-        session.verify = False
-        return pystac_client.Client.open(config.STAC_URL, session=session, parameters=parameters)
+        # parameters = dict(access_token=config.ACCESS_TOKEN)
+        response = requests.get(config.STAC_URL, verify=False)
+        if response.status_code == 200:
+            return pystac_client.Client.from_dict(response.json())
+        else:
+            print("STAC_URL request didn't return code 200!")
 
     def _validate_bbox(self, bbox):
         check_bbox_format(bbox, msg="Invalid bounding box parameter!")
