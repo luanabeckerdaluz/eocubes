@@ -9,7 +9,7 @@
 """Configuration file for the Python Client Library for Earth Observation Data Cube."""
 import sphinx_rtd_theme
 
-__version__ = '0.1.1'
+__version__ = '0.1'
 # -- Project information -----------------------------------------------------
 
 project = '4. API EOCube'
